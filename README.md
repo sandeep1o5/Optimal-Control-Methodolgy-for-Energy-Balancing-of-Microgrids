@@ -49,27 +49,55 @@ This section should highlight the effectiveness of your optimal control strategy
 | **BESS Management** | Maintain battery SOC within safe limits (e.g., 20% to 80%). | SOC successfully constrained over the simulation period. |
 | **Grid Interaction** | Minimize peak power imported/exported. | Peak power reduced to **[Z kW]**. |
 
-## 🚀 Getting Started
+That is a critical piece of information\! Since your control methodology is implemented in **Simulink** (a block diagram environment) and not a Python/PyTorch script, the "Getting Started" section needs to be completely updated to guide the user on running a `.slx` file instead of a `.py` file.
+
+Here is the revised and corrected **Getting Started** section for your Microgrids README:
+
+-----
+
+## 🚀 Getting Started (Simulink Implementation)
+
+This project contains the Microgrid model and the Optimal Control Methodology implemented using **MATLAB and Simulink**.
+
+### Prerequisites
+
+You must have the following software installed:
+
+1.  **MATLAB (R2018b or newer is recommended).**
+2.  **Simulink.**
+3.  **Required Toolboxes:** (Essential for power systems and optimization. Please specify the exact toolboxes you used, e.g.)
+      * **Simscape Electrical** (or **Simscape Power Systems**).
+      * **Optimization Toolbox** (if you used built-in optimization solvers).
+      * **Model Predictive Control Toolbox** (if MPC was the specific optimal control method).
+
+### Setup and Execution
 
 1.  **Clone the repository:**
+
     ```bash
     git clone [Your Repository URL]
     cd Optimal-Microgrid-Control
     ```
-2.  **Install dependencies:**
-    ```bash
-    pip install -r requirements.txt
-    ```
-3.  **Run Simulation:**
-    ```bash
-    # Command to run your main simulation/optimization script
-    python run_optimal_dispatch.py --horizon 24 --cost-weights economic
-    ```
 
-## 📚 References
+2.  **Locate the Model File:**
 
-Basantes, J. A., Paredes, D., Llanos, J., Ortiz, D., & Burgos, C. (2023). Energy Management System (EMS) Based on Model Predictive Control (MPC) for an Isolated DC Microgrid. *Energies*, *16*(6), 2912. [https://doi.org/10.3390/en16062912](https://doi.org/10.3390/en16062912)
+      * Find the main Simulink model file, typically ending in `.slx` (e.g., `Microgrid_Optimal_Control.slx`).
 
-Hu, J., Shan, Y., Guerrero, J. M., Ioinovici, A., Chan, K. W., & Rodriguez, J. (2021). Model predictive control of microgrids – An overview. *Renewable and Sustainable Energy Reviews*, *136*, 110422.
+3.  **Open MATLAB and Run the Model:**
 
-Shahzad, S., Abbasi, M. A., Chaudhry, M. A., & Hussain, M. M. (2022). Model Predictive Control Strategies in Microgrids: A Concise Revisit. *IEEE Access*, *10*, 122211–122225.
+      * Open MATLAB.
+      * Navigate to the project directory in the MATLAB file browser.
+      * Double-click the main `.slx` file to open it in Simulink.
+      * Before running, ensure any required MATLAB scripts (e.g., `init_params.m` or `startup.m`) used to define parameters, forecasting data, or BESS constraints are run in the MATLAB command window first.
+        ```matlab
+        # Example command to initialize parameters
+        run('init_params.m')
+        ```
+      * Click the **"Run"** button (▶) in the Simulink window to start the simulation and execute the Optimal Control logic.
+
+4.  **View Results:**
+
+      * Observe the results in the embedded Scope blocks within the Simulink model (e.g., Load Power, Grid Exchange Power, BESS State of Charge).
+      * Any post-processing or plotting scripts (e.g., `plot_results.m`) can then be run in the MATLAB command window to generate final figures.
+
+-----
